@@ -6,6 +6,12 @@
 
 Checks if a string has at least one prohibited substring at a given index.
 
+## Related Packages
+
+https://github.com/pelevesque/has_prohibited_substring_at_sums  
+https://github.com/pelevesque/has_required_substrings_at_indexes  
+https://github.com/pelevesque/has_required_substrings_at_sums  
+
 ## Node Repository
 
 https://www.npmjs.com/package/@pelevesque/has_prohibited_substring_at_indexes
@@ -62,7 +68,7 @@ const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings)
 
 The `allowSubstringBleeding` flag is `false` by default. It it used when you want
 to allow the last substring to be incomplete if the string is too short.
-In the following example, the last substring `canal` starts at the right index,
+In the following example, the last substring `canal` starts at the correct index,
 but remains incomplete since the string ends. Normally this would return `false`.
 With `allowSubstringBleeding` set to `true`, it returns `true`.
 
@@ -73,6 +79,8 @@ const allowSubstringBleeding = true
 const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, allowSubstringBleeding)
 // result === true
 ```
+
+#### Options Style
 
 You can also set `allowSubstringBleeding` using an options style.
 This is for style compatibility with the related `has_required_substrings_at_sums`
