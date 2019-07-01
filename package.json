@@ -16,8 +16,8 @@
   },
   "keywords": [
     "prohibited",
-    "substring",
-    "string"
+    "string",
+    "substring"
   ],
   "author": "Pierre-Emmanuel Lévesque <pierre.e.levesque@gmail.com>",
   "license": "MIT",
