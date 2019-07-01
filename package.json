@@ -34,5 +34,8 @@
     "istanbul": "^0.4.5",
     "mocha": "^6.1.4",
     "standard": "^12.0.1"
+  },
+  "dependencies": {
+    "isobject": "^4.0.0"
   }
 }

@@ -1,6 +1,14 @@
 'use strict'
 
+const isObject = require('isobject')
+
 module.exports = (str, prohibitedSubstrings, allowSubstringBleeding = false) => {
+  if (
+    isObject(allowSubstringBleeding) &&
+    typeof allowSubstringBleeding.allowSubstringBleeding !== 'undefined'
+  ) {
+    allowSubstringBleeding = allowSubstringBleeding.allowSubstringBleeding
+  }
   prohibitedSubstrings = Object.entries(prohibitedSubstrings)
   if (prohibitedSubstrings.length === 0) return false
   if (prohibitedSubstrings.length > 0 && str === '') return false

@@ -108,22 +108,48 @@ describe('#hasProhibitedSubstringAtIndexes()', () => {
   })
 
   describe('allowSubstringBleeding flag', () => {
-    it('should not allow bleeding when set to false', () => {
-      const str = 'abcde'
-      const prohibitedSubstrings = { 4: 'efg' }
-      const allowSubstringBleeding = false
-      const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, allowSubstringBleeding)
-      const expected = false
-      expect(result).to.equal(expected)
+    describe('normal argument style', () => {
+      it('should not allow bleeding when set to false', () => {
+        const str = 'abcde'
+        const prohibitedSubstrings = { 4: 'efg' }
+        const allowSubstringBleeding = false
+        const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, allowSubstringBleeding)
+        const expected = false
+        expect(result).to.equal(expected)
+      })
+
+      it('should allow bleeding when set to true', () => {
+        const str = 'abcde'
+        const prohibitedSubstrings = { 4: 'efg' }
+        const allowSubstringBleeding = true
+        const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, allowSubstringBleeding)
+        const expected = true
+        expect(result).to.equal(expected)
+      })
     })
 
-    it('should allow bleeding when set to true', () => {
-      const str = 'abcde'
-      const prohibitedSubstrings = { 4: 'efg' }
-      const allowSubstringBleeding = true
-      const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, allowSubstringBleeding)
-      const expected = true
-      expect(result).to.equal(expected)
+    describe('options style', () => {
+      it('should not allow bleeding when set to false', () => {
+        const str = 'abcde'
+        const prohibitedSubstrings = { 4: 'efg' }
+        const allowSubstringBleeding = false
+        const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, {
+          allowSubstringBleeding: allowSubstringBleeding
+        })
+        const expected = false
+        expect(result).to.equal(expected)
+      })
+
+      it('should allow bleeding when set to true', () => {
+        const str = 'abcde'
+        const prohibitedSubstrings = { 4: 'efg' }
+        const allowSubstringBleeding = true
+        const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, {
+          allowSubstringBleeding: allowSubstringBleeding
+        })
+        const expected = true
+        expect(result).to.equal(expected)
+      })
     })
   })
 })
