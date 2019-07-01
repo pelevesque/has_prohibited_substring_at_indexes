@@ -32,6 +32,12 @@ https://www.npmjs.com/package/@pelevesque/has_prohibited_substring_at_indexes
 
 ## Usage
 
+```js
+str                    (required)
+prohibitedSubstrings   (required)
+allowSubstringBleeding (optional) default = false
+```
+
 ### Requiring
 
 ```js
