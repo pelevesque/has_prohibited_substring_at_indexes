@@ -8,9 +8,11 @@ Checks if a string has at least one prohibited substring at a given index.
 
 ## Related Packages
 
-https://github.com/pelevesque/has_prohibited_substring_at_sums  
 https://github.com/pelevesque/has_required_substrings_at_indexes  
-https://github.com/pelevesque/has_required_substrings_at_sums  
+https://github.com/pelevesque/has_required_substrings  
+https://github.com/pelevesque/has_prohibited_substring  
+https://github.com/pelevesque/has_required_substrings_after_sums    
+https://github.com/pelevesque/has_prohibited_substring_after_sums  
 
 ## Node Repository
 

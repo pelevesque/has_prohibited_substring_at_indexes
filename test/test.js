@@ -5,18 +5,18 @@ const expect = require('chai').expect
 const hasProhibitedSubstringAtIndexes = require('../index')
 
 describe('#hasProhibitedSubstringAtIndexes()', () => {
-  describe('value check', () => {
+  describe('empty argument checks', () => {
     it('should return false when prohibitedSubstrings is an empty object', () => {
-      const str = ''
+      const str = 'abcde'
       const prohibitedSubstrings = {}
       const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings)
       const expected = false
       expect(result).to.equal(expected)
     })
 
-    it('should return false when str is empty, but prohibitedSubstrings is not empty', () => {
+    it('should return false when str is empty', () => {
       const str = ''
-      const prohibitedSubstrings = { 0: 'a' }
+      const prohibitedSubstrings = { 0: 'a', 1: 'b', 2: 'c' }
       const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings)
       const expected = false
       expect(result).to.equal(expected)
@@ -40,7 +40,7 @@ describe('#hasProhibitedSubstringAtIndexes()', () => {
       expect(result).to.equal(expected)
     })
 
-    it('should return false when all of many substrings are not found', () => {
+    it('should return false when none of many substrings are found', () => {
       const str = 'abcde'
       const prohibitedSubstrings = { 0: 'e', 2: 'f', 4: 'a' }
       const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings)
@@ -82,7 +82,7 @@ describe('#hasProhibitedSubstringAtIndexes()', () => {
       expect(result).to.equal(expected)
     })
 
-    it('should return false when all of many substrings are not found', () => {
+    it('should return false when none of many substrings are found', () => {
       const str = 'abcde'
       const prohibitedSubstrings = { 0: 'edc', 2: 'abc', 4: 'abc' }
       const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings)
@@ -108,7 +108,7 @@ describe('#hasProhibitedSubstringAtIndexes()', () => {
   })
 
   describe('many substrings at one index', () => {
-    it('should return false when all of many substrings are not found', () => {
+    it('should return false when none of many substrings are found', () => {
       const str = 'abcde'
       const prohibitedSubstrings = { 0: ['bee', 'pig', 'man'], 2: ['hog', 'fly'] }
       const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings)
@@ -125,45 +125,53 @@ describe('#hasProhibitedSubstringAtIndexes()', () => {
     })
   })
 
-  describe('allowSubstringBleeding flag', () => {
+  describe('allowLastSubstringToBleed option', () => {
+    it('should default to false', () => {
+      const str = 'a big ma'
+      const prohibitedSubstrings = ['machine']
+      const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings)
+      const expected = false
+      expect(result).to.equal(expected)
+    })
+
     describe('classic argument style', () => {
-      it('should not allow bleeding when set to false', () => {
+      it('should not allow last substring to bleed when set to false', () => {
         const str = 'abcde'
         const prohibitedSubstrings = { 4: 'efg' }
-        const allowSubstringBleeding = false
-        const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, allowSubstringBleeding)
+        const allowLastSubstringToBleed = false
+        const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, allowLastSubstringToBleed)
         const expected = false
         expect(result).to.equal(expected)
       })
 
-      it('should allow bleeding when set to true', () => {
+      it('should allow last substring to bleed when set to true', () => {
         const str = 'abcde'
         const prohibitedSubstrings = { 4: 'efg' }
-        const allowSubstringBleeding = true
-        const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, allowSubstringBleeding)
+        const allowLastSubstringToBleed = true
+        const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, allowLastSubstringToBleed)
         const expected = true
         expect(result).to.equal(expected)
       })
     })
 
     describe('options style', () => {
-      it('should not allow bleeding when set to false', () => {
+      it('should not allow last substring to bleed when set to false', () => {
         const str = 'abcde'
         const prohibitedSubstrings = { 4: 'efg' }
-        const allowSubstringBleeding = false
+        const allowLastSubstringToBleed = false
         const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, {
-          allowSubstringBleeding: allowSubstringBleeding
+          allowLastSubstringToBleed: allowLastSubstringToBleed
         })
         const expected = false
         expect(result).to.equal(expected)
       })
 
-      it('should allow bleeding when set to true', () => {
+      it('should allow last substring to bleed when set to true', () => {
         const str = 'abcde'
         const prohibitedSubstrings = { 4: 'efg' }
-        const allowSubstringBleeding = true
+        const allowLastSubstringToBleed = true
         const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, {
-          allowSubstringBleeding: allowSubstringBleeding
+          allowLastSubstringToBleed: allowLastSubstringToBleed
         })
         const expected = true
         expect(result).to.equal(expected)
