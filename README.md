@@ -35,9 +35,9 @@ https://www.npmjs.com/package/@pelevesque/has_prohibited_substring_at_indexes
 ## Usage
 
 ```js
-str                    (required)
-prohibitedSubstrings   (required)
-allowSubstringBleeding (optional) default = false
+str                       (required)
+prohibitedSubstrings      (required)
+allowLastSubstringToBleed (optional) default = false
 ```
 
 ### Requiring
@@ -72,34 +72,35 @@ const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings)
 // result === true
 ```
 
-### AllowSubstringBleeding Flag
+### Options
 
-The `allowSubstringBleeding` flag is `false` by default. It it used when you want
+#### allowLastSubstringToBleed
+
+The `allowLastSubstringToBleed` option is `false` by default. It it used when you want
 to allow the last substring to be incomplete if the string is too short.
 In the following example, the last substring `canal` starts at the correct index,
 but remains incomplete since the string ends. Normally this would return `false`.
-With `allowSubstringBleeding` set to `true`, it returns `true`.
+With `allowLastSubstringToBleed` set to `true`, it returns `true`.
 
 ```js
 const str = 'a man a plan a c'
 const prohibitedSubstrings = { 15: 'canal' }
-const allowSubstringBleeding = true
-const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, allowSubstringBleeding)
+const allowLastSubstringToBleed = true
+const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, allowLastSubstringToBleed)
 // result === true
 ```
 
-#### Options Style
+##### options style
 
-You can also set `allowSubstringBleeding` using an options style.
-This is for style compatibility with the related `has_required_substrings_at_sums`
-and `has_prohibited_substring_at_sums` packages.
+For style compatibility with related packages like `has_required_substrings_after_sums`,
+it is possible to set `allowLastSubstringToBleed` using an options style.
 
 ```js
 const str = 'a man a plan a c'
 const prohibitedSubstrings = { 15: 'canal' }
-const allowSubstringBleeding = true
+const allowLastSubstringToBleed = true
 const result = hasProhibitedSubstringAtIndexes(str, prohibitedSubstrings, {
-  allowSubstringBleeding: allowSubstringBleeding
+  allowLastSubstringToBleed: allowLastSubstringToBleed
 })
 // result === true
 ```
