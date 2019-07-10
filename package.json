@@ -1,6 +1,6 @@
 {
   "name": "@pelevesque/has_prohibited_substring_at_indexes",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Checks if a string has at least one prohibited substring at a given index.",
   "main": "index.js",
   "engines": {
